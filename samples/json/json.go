@@ -6,13 +6,22 @@ import (
 	"os"
 
 	json "github.com/json-iterator/go"
-	"github.com/silverswords/sand/server/web"
+	"github.com/silverswords/sand/sql/mysql"
 )
 
 func main() {
-	config := web.Config{
-		Host: "localhost",
-		Addr: "9090",
+	// config := web.Config{
+	// 	Host: "localhost",
+	// 	Addr: "9090",
+	// }
+
+	config := mysql.Config{
+		Host:     "mqying.xyz",
+		Port:     "3306",
+		UserName: "root",
+		Password: "123456",
+		Database: "test",
+		Charset:  "utf8",
 	}
 
 	data, err := json.Marshal(config)
@@ -20,7 +29,7 @@ func main() {
 		fmt.Println("error:", err)
 	}
 
-	err = os.WriteFile("test", data, 0666)
+	err = os.WriteFile("sql", data, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	json "github.com/json-iterator/go"
+	controller "github.com/silverswords/sand/controller/gin"
 )
 
 type Builder struct {
@@ -49,6 +50,7 @@ func (b *Builder) Run() *Server {
 	}
 
 	engine := gin.Default()
+	registerRouter(engine)
 
 	return &Server{
 		Engine: engine,
@@ -59,4 +61,11 @@ func (b *Builder) Run() *Server {
 
 		listener: listener,
 	}
+}
+
+func registerRouter(engine *gin.Engine) {
+	routerBasicGroup := engine.Group("/api/v1")
+
+	controller.RegisterTest(routerBasicGroup.Group("test"))
+	controller.RegisterProduct(routerBasicGroup.Group("product"))
 }

@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/creasty/defaults v1.6.0
 	github.com/gin-gonic/gin v1.6.2
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/json-iterator/go v1.1.9
 	go.uber.org/zap v1.22.0
 )
